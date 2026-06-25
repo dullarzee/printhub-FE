@@ -5,13 +5,15 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ArrowRight, Zap, Truck } from "lucide-react";
+import { ArrowRight, Zap, Truck, Star } from "lucide-react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import BEendpoints from "@/lib/urls/backendUrl";
 import { Product } from "@/types/product";
 import ProductCard from "@/components/ui/productCard";
 import ProductCardSkeleton from "@/components/ui/productCardSkeleton";
+import ContactUsForm from "@/components/ui/contactUsForm";
+import { Mail, Phone, MapPin } from "lucide-react";
 
 export default function Home() {
   const [error, setError] = useState<string>();
@@ -39,28 +41,58 @@ export default function Home() {
       <Header />
 
       {/* Hero Section */}
-      <section className="flex-1 relative overflow-hidden bg-linear-to-l from-blue-50 to-white py-20 sm:py-32 border border-green-500">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 border border-red-500">
-          <div className="text-center">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
-              Professional Printing Solutions
+      <section className="flex justify-center w-full items-center flex-col md:flex-row flex-1 relative overflow-hidden bg-linear-to-br from-white to-sky-50 px-6 p-14 md:py-auto md:px-22 min-h-[90vh] max-w-screen sm:max-h-auto">
+        <div className="mx-auto w-full md:max-w-7xl flex items-center flex-col lg:flex-row">
+          <div className="md:w-[54%] text-center lg:text-left ">
+            <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-13 md:leading-18">
+              Professional Printing Services & Solution
             </h1>
-            <p className="text-lg sm:text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+            <p className="text-[1rem] sm:text-[1.125rem] text-center lg:text-left text-gray-400 mb-8 max-w-2xl leading-6">
               High-quality printing services and premium materials for
               businesses of all sizes. From branding to bulk orders, we've got
               you covered.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 sm:justify-center lg:justify-normal">
               <Link href="/products">
-                <Button size="lg" className="gap-2">
+                <Button
+                  size="lg"
+                  className="gap-2 bg-sky-500 hover:bg-sky-600 text-white text-lg px-10 py-6"
+                >
                   Browse Products <ArrowRight className="h-4 w-4" />
                 </Button>
               </Link>
               <Link href="/services">
-                <Button size="lg" variant="outline">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="text-lg px-10 py-6"
+                >
                   Explore Services
                 </Button>
               </Link>
+            </div>
+          </div>
+
+          <div className="lg:w-[46%] h-full hidden lg:flex items-center justify-end md:pr-8 px-5">
+            <div className=" grid grid-cols-[38%_62%] grid-rows-2 gap-4 h-[70vh] md:w-[420px] my-4">
+              <div className=" rounded-lg overflow-hidden">
+                <img
+                  className="object-cover w-full h-full"
+                  src="https://assets.bigcartel.com/product_images/200408687/IMG_1339.JPG?auto=format&fit=max&w=2000"
+                />
+              </div>
+              <div className="row-span-2 border rounded-lg overflow-hidden">
+                <img
+                  className="object-cover w-full h-full"
+                  src="https://assets.bigcartel.com/product_images/200408687/IMG_1339.JPG?auto=format&fit=max&w=2000"
+                />
+              </div>
+              <div className=" rounded-lg overflow-hidden">
+                <img
+                  className="object-cover w-full h-full"
+                  src="https://assets.bigcartel.com/product_images/200408687/IMG_1339.JPG?auto=format&fit=max&w=2000"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -76,7 +108,7 @@ export default function Home() {
             <Card className="p-8 text-center border border-gray-200">
               <div className="flex justify-center mb-4">
                 <div className="p-3 rounded-lg bg-blue-100">
-                  {/*<Quality className="h-6 w-6 text-blue-600" />*/}
+                  <Star className="h-6 w-6 text-blue-600" />
                 </div>
               </div>
               <h3 className="text-xl font-semibold mb-2">Premium Quality</h3>
@@ -134,6 +166,72 @@ export default function Home() {
             ))}
           </div>
         </div>
+      </section>
+
+      {/* Contact-us form Section*/}
+
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center pt-16">
+        <h1 className="text-4xl md:text-5xl font-bold mb-6">
+          Get in touch with Us
+        </h1>
+        <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+          Tell us about your requirements, Our team will get back to you shortly
+        </p>
+      </div>
+
+      <section className="flex py-16 justify-center items-center flex-col-reverse md:flex-row gap-4">
+        <div className="flex flex-col gap-y-4">
+          <Card className="border border-gray-200 p-8">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="p-3 rounded-lg bg-blue-100">
+                <Mail className="h-6 w-6 text-blue-600" />
+              </div>
+              <div>
+                <h3 className="font-semibold">Email</h3>
+                <a
+                  href="mailto:info@printhub.com"
+                  className="text-blue-600 hover:text-blue-700"
+                >
+                  info@printhub.com
+                </a>
+              </div>
+            </div>
+          </Card>
+
+          <Card className="border border-gray-200 p-8">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="p-3 rounded-lg bg-blue-100">
+                <Phone className="h-6 w-6 text-blue-600" />
+              </div>
+              <div>
+                <h3 className="font-semibold">Phone</h3>
+                <a
+                  href="tel:+2341234567890"
+                  className="text-blue-600 hover:text-blue-700"
+                >
+                  +234 (123) 456-7890
+                </a>
+              </div>
+            </div>
+          </Card>
+
+          <Card className="border border-gray-200 p-8">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="p-3 rounded-lg bg-blue-100">
+                <MapPin className="h-6 w-6 text-blue-600" />
+              </div>
+              <div>
+                <h3 className="font-semibold">Address</h3>
+                <p className="text-gray-600 text-sm">
+                  123 Business Ave
+                  <br />
+                  Lagos, Nigeria
+                </p>
+              </div>
+            </div>
+          </Card>
+        </div>
+        <ContactUsForm />
       </section>
 
       {/* CTA Section */}

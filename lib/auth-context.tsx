@@ -111,12 +111,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const logout = async () => {
     setIsLoading(true);
+    // Invalidate the JWT cookie on the server
+    console.log("Logging out user...");
     try {
-      await fetch("/api/auth/logout", { method: "POST" });
-      setUser(null);
-    } finally {
-      setIsLoading(false);
+      const { data } = await axios.get(BEendpoints.logout);
+      if (data.ok) setUser(null);
+    } catch (err) {
+      console.error("Logout failed: ", err);
     }
+    console.log("tried logging out user...");
+
+    setIsLoading(false);
   };
 
   return (

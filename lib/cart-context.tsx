@@ -39,6 +39,7 @@ interface CartContextType {
   totalProducts: () => number;
   totalServices: () => number;
   totalPrice: () => number;
+  mergeCart: () => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -132,6 +133,13 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     setProducts((prev) => prev.filter((p) => p._id !== productId));
   };
 
+  const mergeCart = async () => {
+    const res = await axios.post(
+      BEendpoints.merge_cart(user?._id as string),
+      products,
+    );
+  };
+
   const updateProductQuantity = async (productId: string, quantity: number) => {
     if (user) {
       try {
@@ -183,9 +191,22 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     );
   };
 
-  const clearCart = () => {
+  const clearCart = async () => {
+    if (user) {
+      try {
+        const { data } = await axios.delete(BEendpoints.clearCart(user._id));
+        if(data.ok){
+          setProducts([]);
+          setServices([]);
+        }
+      } catch (err) {
+        throw Error("unable to clear cart");
+    }
+  }else{
     setProducts([]);
     setServices([]);
+  }
+    
   };
 
   const totalProducts = () => products?.reduce((sum, p) => sum + p.quantity, 0);
@@ -218,6 +239,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         totalProducts,
         totalServices,
         totalPrice,
+        mergeCart,
       }}
     >
       {children}

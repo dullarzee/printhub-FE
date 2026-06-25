@@ -30,16 +30,6 @@ export default function CartPage() {
 
   console.log("cart Items: ", products);
 
-  // const dummyProduct = [
-  //   {
-  //     id: "1",
-  //     name: "Sample Product",
-  //     price: 50000,
-  //     quantity: 2,
-  //     image:
-  //       "https://www.task.com.br/blog/wp-content/uploads/placeholder-task-internet.png",
-  //   },
-  // ];
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
