@@ -11,7 +11,7 @@ export default function ProductCard({ product }: { product: Product }) {
         key={product._id}
         className="overflow-hidden border border-gray-200 hover:shadow-lg transition"
       >
-        <div className="aspect-square bg-linear-to-br from-gray-300 to-gray-400 max-h-64">
+        <div className="aspect-square bg-linear-to-br from-gray-300 to-gray-400 max-h-64 w-full">
           <img
             src={product.image}
             alt={product.name}

@@ -14,6 +14,8 @@ import ProductCard from "@/components/ui/productCard";
 import ProductCardSkeleton from "@/components/ui/productCardSkeleton";
 import ContactUsForm from "@/components/ui/contactUsForm";
 import { Mail, Phone, MapPin } from "lucide-react";
+import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function Home() {
   const [error, setError] = useState<string>();
@@ -42,17 +44,32 @@ export default function Home() {
 
       {/* Hero Section */}
       <section className="flex justify-center w-full items-center flex-col md:flex-row flex-1 relative overflow-hidden bg-linear-to-br from-white to-sky-50 px-6 p-14 md:py-auto md:px-22 min-h-[90vh] max-w-screen sm:max-h-auto">
-        <div className="mx-auto w-full md:max-w-7xl flex items-center flex-col lg:flex-row">
+        <div className="mx-auto w-full md:max-w-7xl flex items-center flex-col lg:flex-row overflow-hidden">
           <div className="md:w-[54%] text-center lg:text-left ">
-            <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-13 md:leading-18">
+            <motion.h1
+              initial={{ y: 300, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.7 }}
+              className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-13 md:leading-18"
+            >
               Professional Printing Services & Solution
-            </h1>
-            <p className="text-[1rem] sm:text-[1.125rem] text-center lg:text-left text-gray-400 mb-8 max-w-2xl leading-6">
+            </motion.h1>
+            <motion.p
+              initial={{ y: 300, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.9 }}
+              className="text-[1rem] sm:text-[1.125rem] text-center lg:text-left text-gray-400 mb-8 max-w-2xl leading-6"
+            >
               High-quality printing services and premium materials for
               businesses of all sizes. From branding to bulk orders, we've got
               you covered.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 sm:justify-center lg:justify-normal">
+            </motion.p>
+            <motion.div
+              initial={{ y: 300, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 1.2 }}
+              className="flex flex-col sm:flex-row gap-4 sm:justify-center lg:justify-normal"
+            >
               <Link href="/products">
                 <Button
                   size="lg"
@@ -70,29 +87,56 @@ export default function Home() {
                   Explore Services
                 </Button>
               </Link>
-            </div>
+            </motion.div>
           </div>
 
           <div className="lg:w-[46%] h-full hidden lg:flex items-center justify-end md:pr-8 px-5">
-            <div className=" grid grid-cols-[38%_62%] grid-rows-2 gap-4 h-[70vh] md:w-[420px] my-4">
-              <div className=" rounded-lg overflow-hidden">
-                <img
+            <div className=" grid grid-cols-[38%_62%] grid-rows-2 gap-4 h-[70vh] md:w-105 my-4">
+              <motion.div
+                initial={{ y: -300, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.7 }}
+                className=" rounded-lg overflow-hidden"
+              >
+                <Image
+                  alt="print product"
                   className="object-cover w-full h-full"
+                  width={50}
+                  height={200}
+                  loading="lazy"
                   src="https://assets.bigcartel.com/product_images/200408687/IMG_1339.JPG?auto=format&fit=max&w=2000"
                 />
-              </div>
-              <div className="row-span-2 border rounded-lg overflow-hidden">
-                <img
+              </motion.div>
+              <motion.div
+                initial={{ x: 300, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.7 }}
+                className="row-span-2 rounded-lg overflow-hidden"
+              >
+                <Image
+                  alt="print product"
+                  width={50}
+                  height={200}
+                  loading="lazy"
                   className="object-cover w-full h-full"
-                  src="https://assets.bigcartel.com/product_images/200408687/IMG_1339.JPG?auto=format&fit=max&w=2000"
+                  src="https://cdn.shopify.com/s/files/1/0646/3881/2399/files/dtf.jpg?v=1686549423"
                 />
-              </div>
-              <div className=" rounded-lg overflow-hidden">
-                <img
+              </motion.div>
+              <motion.div
+                initial={{ y: 300, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.7 }}
+                className=" rounded-lg overflow-hidden"
+              >
+                <Image
+                  alt="print product"
+                  width={50}
+                  height={200}
+                  loading="lazy"
                   className="object-cover w-full h-full"
-                  src="https://assets.bigcartel.com/product_images/200408687/IMG_1339.JPG?auto=format&fit=max&w=2000"
+                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPO3HITqT6HGpmKD7arYlJh7gaBTQIKXO6zdmTpbmUZ3T79ilFyFWmOxU&s=10"
                 />
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
@@ -105,44 +149,67 @@ export default function Home() {
             Why Choose PrintHub?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="p-8 text-center border border-gray-200">
-              <div className="flex justify-center mb-4">
-                <div className="p-3 rounded-lg bg-blue-100">
-                  <Star className="h-6 w-6 text-blue-600" />
+            <motion.div
+              initial={{ x: 300, opacity: 0 }}
+              transition={{ duration: 0.4 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: true }}
+            >
+              <Card className="p-8 text-center border border-gray-200">
+                <div className="flex justify-center mb-4">
+                  <div className="p-3 rounded-lg bg-blue-100">
+                    <Star className="h-6 w-6 text-blue-600" />
+                  </div>
                 </div>
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Premium Quality</h3>
-              <p className="text-gray-600">
-                We use only the finest materials and cutting-edge printing
-                technology to ensure superior results.
-              </p>
-            </Card>
+                <h3 className="text-xl font-semibold mb-2">Premium Quality</h3>
+                <p className="text-gray-600">
+                  We use only the finest materials and cutting-edge printing
+                  technology to ensure superior results.
+                </p>
+              </Card>
+            </motion.div>
 
-            <Card className="p-8 text-center border border-gray-200">
-              <div className="flex justify-center mb-4">
-                <div className="p-3 rounded-lg bg-blue-100">
-                  <Zap className="h-6 w-6 text-blue-600" />
+            <motion.div
+              initial={{ x: 300, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.7 }}
+              viewport={{ once: true }}
+            >
+              <Card className="p-8 text-center border border-gray-200">
+                <div className="flex justify-center mb-4">
+                  <div className="p-3 rounded-lg bg-blue-100">
+                    <Zap className="h-6 w-6 text-blue-600" />
+                  </div>
                 </div>
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Fast Turnaround</h3>
-              <p className="text-gray-600">
-                Quick production and delivery times without compromising on
-                quality. Rush orders available.
-              </p>
-            </Card>
+                <h3 className="text-xl font-semibold mb-2">Fast Turnaround</h3>
+                <p className="text-gray-600">
+                  Quick production and delivery times without compromising on
+                  quality. Rush orders available.
+                </p>
+              </Card>
+            </motion.div>
 
-            <Card className="p-8 text-center border border-gray-200">
-              <div className="flex justify-center mb-4">
-                <div className="p-3 rounded-lg bg-blue-100">
-                  <Truck className="h-6 w-6 text-blue-600" />
+            <motion.div
+              initial={{ x: 300, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.9 }}
+              viewport={{ once: true }}
+            >
+              <Card className="p-8 text-center border border-gray-200">
+                <div className="flex justify-center mb-4">
+                  <div className="p-3 rounded-lg bg-blue-100">
+                    <Truck className="h-6 w-6 text-blue-600" />
+                  </div>
                 </div>
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Reliable Shipping</h3>
-              <p className="text-gray-600">
-                Secure packaging and reliable delivery to ensure your products
-                arrive in perfect condition.
-              </p>
-            </Card>
+                <h3 className="text-xl font-semibold mb-2">
+                  Reliable Shipping
+                </h3>
+                <p className="text-gray-600">
+                  Secure packaging and reliable delivery to ensure your products
+                  arrive in perfect condition.
+                </p>
+              </Card>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -161,8 +228,16 @@ export default function Home() {
               Array.from({ length: 3 }).map((_, i) => (
                 <ProductCardSkeleton key={i} />
               ))}
-            {products?.map((product) => (
-              <ProductCard key={product._id} product={product} />
+            {products?.map((product, i) => (
+              <motion.div
+                key={product._id}
+                initial={{ x: 300, opacity: 0 }}
+                transition={{ duration: 0.4 * (i + 1) }}
+                whileInView={{ x: 0, opacity: 1 }}
+                viewport={{ once: true }}
+              >
+                <ProductCard product={product} />
+              </motion.div>
             ))}
           </div>
         </div>
@@ -235,7 +310,13 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-blue-600 text-white">
+      <motion.section
+        initial={{ scale: 0, opacity: 0 }}
+        whileInView={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true }}
+        className="py-20 bg-blue-600 text-white"
+      >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-6">Ready to Get Started?</h2>
           <p className="text-lg mb-8 max-w-2xl mx-auto opacity-90">
@@ -248,7 +329,7 @@ export default function Home() {
             </Button>
           </Link>
         </div>
-      </section>
+      </motion.section>
 
       <Footer />
     </div>

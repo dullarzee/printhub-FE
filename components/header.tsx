@@ -5,52 +5,76 @@ import { useAuth } from "@/lib/auth-context";
 import { useCart } from "@/lib/cart-context";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart, User, LogOut, Menu } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Logo } from "@/components/ui/logo";
+import { usePathname } from "next/navigation";
 
 export function Header() {
   const { user, logout } = useAuth();
   const { totalProducts, totalServices } = useCart();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeLink, setActiveLink] = useState("/");
   const cartCount = totalProducts() + totalServices();
+  const pathname = usePathname();
+
+  const links = {
+    products: "products",
+    services: "services",
+    about: "about",
+    contact: "contact",
+    cart: "cart",
+  };
+
+  useEffect(() => {
+    const detectActiveLink = () => {
+      if (pathname.includes(links.products)) {
+        setActiveLink(links.products);
+      } else if (pathname.includes(links.services)) {
+        setActiveLink(links.services);
+      } else if (pathname.includes(links.about)) {
+        setActiveLink(links.about);
+      } else if (pathname.includes(links.contact)) {
+        setActiveLink(links.contact);
+      } else if (pathname.includes(links.cart)) {
+        setActiveLink(links.cart);
+      }
+    };
+
+    //for setting current active link
+
+    detectActiveLink();
+  }, []);
 
   return (
     <header className="sticky top-0 z-40 border-b border-gray-200 bg-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link
-            href="/"
-            className="flex items-center gap-2 text-2xl font-bold text-blue-600"
-          >
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600">
-              <span className="text-white">P</span>
-            </div>
-            <span className="hidden sm:inline">Dare-Prints</span>
-          </Link>
+          <Logo />
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
             <Link
               href="/products"
-              className="text-sm font-medium text-gray-700 hover:text-blue-600 transition"
+              className={`text-sm font-medium hover:text-blue-600 transition ${activeLink === links.products ? `text-blue-700` : "text-gray-700"}`}
             >
               Products
             </Link>
             <Link
               href="/services"
-              className="text-sm font-medium text-gray-700 hover:text-blue-600 transition"
+              className={`text-sm font-medium hover:text-blue-600 transition ${activeLink === links.services ? `text-blue-700` : "text-gray-700"}`}
             >
               Services
             </Link>
             <Link
               href="/about"
-              className="text-sm font-medium text-gray-700 hover:text-blue-600 transition"
+              className={`text-sm font-medium hover:text-blue-600 transition ${activeLink === links.about ? `text-blue-700` : "text-gray-700"}`}
             >
               About
             </Link>
             <Link
               href="/contact"
-              className="text-sm font-medium text-gray-700 hover:text-blue-600 transition"
+              className={`text-sm font-medium hover:text-blue-600 transition ${activeLink === links.contact ? `text-blue-700` : "text-gray-700"}`}
             >
               Contact
             </Link>
